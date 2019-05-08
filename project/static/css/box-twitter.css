@@ -1,0 +1,58 @@
+#tweet-nav{font-family: Arial;}
+
+.logo-icon{color:#1DA1F2;font-size: 1.5em;display:none;}
+
+#tweet-ul-1{margin:0px;}
+
+#tweet-ul-1 li a{font-size: 0.7em;}
+
+#tweet-ul-1 li span{color:#66757f;margin-left:5px;font-size: 1.2em;}
+
+.mid-icon{margin:auto;color:#1DA1F2;font-size: 1.5em;}
+
+#tweet-form{}
+
+#tweet-input{background-color: white;border-radius: 25px;height:30px;}
+
+#nav-avatar{margin:0px 10px;}
+
+#tweet-btn{height:30px;border-radius: 25px;background-color: #1DA1F2;color:white;font-weight:bold;border:1px solid #000000;width:70px;height:30px;}
+
+/************/
+
+#box-twitter .side-box{font-family:Arial;background-color: white;}
+
+.side-box .row{margin:0px;}
+
+#tweet-user{border:0px solid red;position: absolute;top:35%;margin:0px 10px;}
+
+#tweet-user tr td{border:0px solid red;text-align: center;line-height: 0px;}
+
+#tweet-name{padding:30px 0px 0px 0px;color:black;font-size: 1.2em;font-weight: bold;}
+
+#tweet-uaser-name{color:#66757f;}
+
+#tweet-user-bg{background-color: #1DA1F2;height:40%;}
+
+#tweet-stat{border:0px solid red;margin:150px 0px 0px 20px;width:300px;}
+
+#tweet-stat th{margin-right:20px;color:#66757f;}
+
+#tweet-stat td{font-size: 1.2em;color:#1DA1F2;font-weight: bold;line-height: 15px;}
+
+
+/************/
+
+#box-twitter .content-box{height:490px;overflow-y: scroll;}
+
+#tweet-tbl{background-color: #1c2a48;}
+
+#tweet-tbl tr td{padding:2px 5px;border:1px solid #1c2331;}
+
+#t-name{font-weight: bold;font-size: 1em;}
+
+#t-created{font-size: 0.8em;color:#cdcdcd;}
+
+#t-text{color:#fcc038;font-size: 1em;}
+
+#t-link a{font-size: 0.9em;color:#cdcdcd;text-decoration: none;}

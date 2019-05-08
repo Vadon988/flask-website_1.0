@@ -1,0 +1,80 @@
+
+#ytModal{}
+
+#ytModal .modal-dialog{margin:100px 400px;}
+
+#ytModal .modal-content{width:70em;height:40em;background-color: #1C2A48;}
+
+#ytModal .modal-body{background-color: #1C2A48;}
+
+/************/
+
+#imdb-slider{display: flex;flex-direction: row;flex-wrap: nowrap;overflow: hidden;height:490px;background-color: #191919;}
+
+.imdb-slide{height:100%;min-width:100%;}
+
+.imdb-slide>div{margin:5px;padding:2px 5px;}
+
+.imdb-slide .row{margin:5px;padding:2px 5px;}
+
+#imdb-title{background-color:#2A2A2A;}
+
+#imdb-n{font-size: 1.2em;font-family: Arial;}
+
+#imdb-y{color:#9e9e9e;}
+
+#imdb-img{padding:0px;margin:0px;}
+
+#imdb-img img{padding:0px;margin:0px;}
+
+#imdb-len{display: flex;flex-direction: column;padding:5px;}
+
+#imdb-len span{max-height:20px;padding:10px 0px;color:#9e9e9e;display:margin-bottom:10px;}
+
+#imdb-plot{background-color: #191919;padding:10px;color:#9e9e9e;}
+
+#imdb-d{color:#fcc038;}
+
+#imdb-director{background-color: #191919;padding:0px 10px 10px 10px;color:#9e9e9e;}
+
+#imdb-actors{background-color: #191919;padding:0px 10px;color:#9e9e9e;}
+
+/****/
+
+.imdb-arrow{position: absolute;top:50%;padding:5px;background-color: rgba(0,0,0,0.5);cursor: pointer;}
+
+.imdb-arrow:hover{background-color: #cdcdcd;}
+
+#next-imdb{float:right;right:0;}
+
+/****/
+
+#content-imdb{padding:10px;display:grid;grid-template-columns: 1fr 1fr 1fr 1fr 1fr;grid-gap:10px;overflow-y:scroll;}
+
+.yt-box{border:1px solid #9e9e9e;}
+
+.yt-box .row{margin:0px;}
+
+#yt-frame{}
+
+#yt-frame iframe{border:1px solid #000000;}
+
+#yt-title{height:47px;overflow:hidden;font-size:0.8em;background-color: #1C2A48;color:#fcc038;padding:5px;font-weight: bold}
+
+#yt-content{font-size:0.8em;padding:5px;}
+
+#yt-btn{float: right;padding:0px 10px 5px 0px;cursor:pointer;}
+
+#yt-btn i{font-size: 1.5em;color:red;padding:0px;}
+
+#yt-btn i:hover{color:white;}
+
+
+/****/
+
+
+@media only screen and (max-width: 992px){
+  
+  #imdb-slider{display: none;}
+
+}

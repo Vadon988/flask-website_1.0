@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Play" />
+	<link href="https://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Crete+Round|Playfair+Display+SC" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">      
+
+	<link rel="stylesheet" href="{{url_for('static',filename='css/layout.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/box-event.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/box-news.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/box-imdb.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/box-git.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/box-twitter.css')}}">
+
+	<script type="text/javascript" src="{{url_for('static',filename='js/layout.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/index.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/box-event.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/box-news.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/box-imdb.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/box-twitter.js')}}"></script>
+	<title>Layout</title>
+</head>
+<body>
+	<div class="wrapper">
+		<nav id="main-nav" class="navbar">
+			<a class="navbar-brand"><i class="fas fa-dice"></i></a>
+			<ul id="main-nav-ul" class="">
+				<li><a href="">Item 1</a></li>
+				<li><a href="">Item 1</a></li>
+				<li><a href="">Item 1</a></li>
+				<li><a href="">Item 1</a></li>
+				<li><a href="">Item 1</a></li>
+			</ul>
+			<div id="main-nav-form" class="ml-auto">
+				<input id="google-q" type="text"  style="width:300px;">
+				<button id="google-btn" style="padding:0px 20px;">Google</button>
+			</div>
+			<div id="main-nav-tog" class="nav-tog">
+				<i class="fas fa-ellipsis-v"></i>
+			</div>
+		</nav>
+		<!--XNAV-->
+		<div class="x-nav">
+			<ul>
+				<li><a href="">Item 1</a></li>
+				<li><a href="">Item 1</a></li>
+				<li><a href="">Item 1</a></li>
+				<li><a href="">Item 1</a></li>
+				<li><a href="">Item 1</a></li>
+				<li>
+					<div id="main-nav-form" class="">
+						<input id="x-google-q" type="text"  style="width:300px;">
+						<button id="x-google-btn" style="padding:0px 20px;">Google</button>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!--USER-ROW-->
+		<div class="user-row row">
+			<div>Hello <span id="user-span">{{user}}</span></div>
+			<form action="" class="ml-auto" method="POST">
+				{{logoutForm.csrf_token}}
+				{{logoutForm.username(id="logout-input")}}
+				{{logoutForm.logout(id="logout-btn")}}
+				<!--<inpt type="submit" value="A">Logout</input>-->
+			</form>
+		</div>
+		<!--INFO-ROW-->
+		<div class="info-row row">
+			<i id="main-sidebar-tog" class="fas fa-bars"></i>
+			<ul id="info-ul">
+				<li>
+					<span class="badge symb">&#36;</span>
+					<span class="rate">{{rate[0][1]}}</span>
+					<span class="x-change">{{rate[0][2]}}</span>
+					<span class="arrow">&#9660;</span>
+				</li>
+				<li>
+					<span class="badge symb">&#163;</span>
+					<span class="rate">{{rate[0][3]}}</span>
+					<span class="x-change">{{rate[0][4]}}</span>
+					<span class="arrow">&#9650;</span>
+				</li>
+				<li>
+					<span class="badge symb">&#165;</span>
+					<span class="rate">{{rate[0][5]}}</span>
+					<span class="x-change">{{rate[0][6]}}</span>
+					<span class="arrow">^</span>
+				</li>
+				<li>
+					<span class="badge symb">&#128;</span>
+					<span class="rate">{{rate[0][7]}}</span>
+					<span class="x-change">{{rate[0][8]}}</span>
+					<span class="arrow">^</span>
+				</li>
+			</ul>
+			<div id="info-tog" class="info-tog ml-auto">
+				<i class="fas fa-ellipsis-v"></i>
+			</div>
+			
+		</div>
+		<div id="x-info" class="x-info-row">
+			<ul>
+				<li>
+					<span class="badge symb">&#36;</span>
+					<span class="rate">{{rate[0][1]}}</span>
+					<span class="x-change">{{rate[0][2]}}</span>
+					<span class="arrow">&#9660;</span>
+				</li>
+				<li>
+					<span class="badge symb">&#163;</span>
+					<span class="rate">{{rate[0][3]}}</span>
+					<span class="x-change">{{rate[0][4]}}</span>
+					<span class="arrow">&#9650;</span>
+				</li>
+				<li>
+					<span class="badge symb">&#165;</span>
+					<span class="rate">{{rate[0][5]}}</span>
+					<span class="x-change">{{rate[0][6]}}</span>
+					<span class="arrow">^</span>
+				</li>
+				<li>
+					<span class="badge symb">&#128;</span>
+					<span class="rate">{{rate[0][7]}}</span>
+					<span class="x-change">{{rate[0][8]}}</span>
+					<span class="arrow">^</span>
+				</li>
+			</ul>
+		</div>
+		<!--CONTENT-->
+		<div class="content">
+			<div id="main-sidebar" class="content-sidebar bg-danger">
+				1
+			</div>
+			{% block body %}{% endblock %}
+		</div>
+		<div class="footer">Fotter</div>
+	<!--END-->
+	</div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

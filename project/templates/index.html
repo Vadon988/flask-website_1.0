@@ -1,0 +1,522 @@
+{% extends 'layout.html' %}
+{% block body %}
+	<div class="index-wrapper">
+		<div id="box-event" class="box row">
+			<!--EVENT-MODULE-->
+			<div id="eventModal" class="modal fade" role="dialog">
+  				<div class="modal-dialog">
+
+    				<!-- Modal content-->
+    				<div class="modal-content">
+     					 <div class="modal-header">
+     					 	<h4 class="modal-title">
+     					 		Add event
+     					 		<span id="curr_date">Date</span>
+     					 	</h4>
+        					<button type="button" class="close" data-dismiss="modal">&times;</button>
+       						
+     					</div>
+      					<div class="modal-body">
+        					<form action="" method="POST">
+        						{{eventForm.csrf_token}}
+        						<label for="">Event:</label>
+        						{{eventForm.event(class="event-field")}}
+        						<br>
+        						<br>
+        						<label for="">Hour:</label>
+        						{{eventForm.hour(class="event-field")}}
+        						<br>
+        						<br>
+        						<label for="">Descreption:</label>
+        						{{eventForm.discreption(id="event-text",class="event-field")}}
+        						<br>
+        						<br>
+        						<label for="">Type:</label>
+        						{{eventForm.type_e(class='event-field')}}
+        						<br>
+        						<br>
+        						{{eventForm.date(id="event-date")}}
+        						{{eventForm.save_e(class="btn btn-outline-primary")}}
+        					</form>
+      					</div>
+      					<div class="modal-footer">
+        					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      					</div>
+    				</div>
+
+  				</div>
+			</div>
+			<!------YT-MODULE------>
+			<div id="ytModal" class="modal fade" role="dialog">
+  				<div class="modal-dialog">
+
+    				<!-- Modal content-->
+   					 <div class="modal-content">
+    				 	 <div class="modal-header">
+        					<button type="button" class="close" data-dismiss="modal">&times;</button>
+       				 		<h4 class="modal-title">Modal Header</h4>
+      					</div>
+     				 	<div class="modal-body">
+       				 		<iframe id="bg-iframe" width="100%" height="100%"
+								src="">
+							</iframe> 
+     				 	</div>
+     				 	<div class="modal-footer">
+     				  		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      					</div>
+   					</div>
+   				</div>
+			</div>
+			<!--------------------->
+			<nav class="navbar col-lg-12">
+				<span id="iso-time"></span>
+				<form action="" method="POST" class="ml-auto" style="visibility: hidden;">
+					{{googleForm.csrf_token}}
+					{{googleForm.query_g(id="query_g")}}
+					{{googleForm.submit_g(id="submit_g")}}
+				</form>
+				
+				<i id="event-tog" class="far fa-calendar-alt"></i>
+			</nav>
+			<div id="cal-col" class="col-lg-12">
+				<div id="date-picker-row" class="row">
+					<div id="date-picker-col" class="col-lg-12">
+						<div id="date-tog">
+							<button id="prev-m" class="month-tog"><i class="fas fa-chevron-left"></i></button>
+							<span id="curr-m" >May</span>
+							<button id="next-m" class="month-tog"><i class="fas fa-chevron-right"></i></button>
+						</div>
+					</div>
+				</div>
+				<table id="cal-tbl">
+					<tr>
+						<th>Sunday</th>
+						<th>Monday</th>
+						<th>Tuesday</th>
+						<th>Wednesday</th>
+						<th>Thursday</th>
+						<th>Friday</th>
+						<th>Saturday</th>
+					</tr>
+				</table>
+			</div>
+			<div id="event-col" class="col-lg-12">
+				<table id="event-tbl">
+					<tr>
+						<th>Event</th>
+						<th>Date</th>
+						<th>Hour</th>
+						<th>Desc</th>
+						<th>Type</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+					{% for row in events %}
+						<tr>
+							<td class="e-name">{{row[2]}}</td>
+							<td class="e-date">{{row[6]}}</td>
+							<td class="e-hour">{{row[3]}}</td>
+							<td class="e-desc">{{row[4]}}</td>
+							<td class="e-type">{{row[5]}}</td>
+							<td>
+								<a id="e-clipbord" href=""><i class="fas fa-clipboard"></i></a>
+							</td>
+							<td>
+								<a class="e-trash" href=""><i class="fas fa-trash-alt"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				
+				</table>
+			</div>
+		</div>
+		<br>
+		<!---->
+		<div id="box-news" class="box row">
+			<nav class="navbar col-lg-12">
+				<div class="box-logo">
+					<i class="box-bars fas fa-bars"></i>
+					<span>
+						<a href="">
+							<img src="{{url_for('static',filename='img/wiki_logo.png')}}" alt="" style="width:35px;height:35px;">
+						</a>
+					</span>
+				</div>
+				<form class="box-form" action="" method="POST">
+					{{wikiForm.csrf_token}}
+					{{wikiForm.query(id="wiki-input")}}
+					{{wikiForm.submit}}
+					<!--<button type="submit">W</button>-->
+				</form>
+				<div class="box-tog">
+					<i class="fas fa-ellipsis-v"></i>
+				</div>
+			</nav>
+			<div class="box-hidden-nav col-lg-12 bg-info">H</div>
+			<div class="side-box col-lg-3">
+				<div id="wiki_title" class="row">
+					{{wikiQuery[0][2]}}
+				</div>
+				<div id="wiki_p" class="row">
+					<p>
+						<img src="{{wikiQuery[0][4]}}" alt="" style="width:100px;height:80px;float:left;">
+						{{wikiQuery[0][3]}}
+					</p>
+					<a id="wiki-link" href="{{wikiQuery[0][5]}}" class="ml-auto">Read More...</a>
+				</div>
+				
+				
+				
+			</div>
+			<div class="content-box col-lg-9">
+				<div class="box-hidden-col">
+					<div id="wiki_title" class="row">
+					{{wikiQuery[0][2]}}
+				</div>
+				<div id="wiki_p" class="row">
+					<p>
+						<img src="{{wikiQuery[0][4]}}" alt="" style="width:100px;height:80px;float:left;">
+						{{wikiQuery[0][3]}}
+					</p>
+				</div>
+				
+				
+				{{wikiQuery[0][5]}}
+				</div>
+				<div class="col-news">
+					{% for row in science_news %}
+						<div class="col-sec">
+							<picture>
+								<img src="{{row[2]}}" alt="" style="width:100%;height:150px;">
+							</picture>
+							<div id="news-title" class="row">
+								<a href="{{row[3]}}">{{row[4]}}</a>
+							</div>
+							<div id="news-p" class="row">
+								{{row[5]}}
+							</div>
+							<div id="news-author" class="row">
+								{{row[6]}}
+							</div>
+						</div>
+					{% endfor %}
+					
+				</div>
+				<!---->
+				<div class="col-news">
+					{% for row in popluer_machine %}
+					<div class="col-sec">
+						<picture>
+							<img src="{{row[2]}}" alt="" style="width:100%;height:150px;">
+						</picture>
+						<div id="news-title" class="row">
+							<a href="https://www.popularmechanics.com{{row[1]}}">{{row[3]}}</a>
+						</div>
+						<div id="news-p" class="row">
+							{{row[4]}}
+						</div>
+						<div id="news-author" class="row">
+							<span>{{row[5]}}</span>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				<div id="prev-news" class="news-arrow"><i class="fas fa-chevron-left"></i></div>
+				<div id="next-news" class="news-arrow"><i class="fas fa-chevron-right"></i></div>
+
+			</div>
+		</div>
+		<br>
+		<!---->
+		<div id="box-imdb" class="box row">
+			<nav class="navbar col-lg-12">
+				<div class="box-logo">
+					<i class="box-bars fas fa-bars"></i>
+					<span>
+						<a href="">
+						<img src="{{url_for('static',filename='img/imdb-logo.png.jpeg')}}" alt="" style="width:60px;height:30px;border-radius:5px;">
+						</a>
+					</span>
+				</div>
+				<form action="">
+					<input type="text" style="width:300px;">
+					<button style="padding:0px 25px;">Imdb</button>
+				</form>
+				<div class="box-tog">
+					<i class="fas fa-ellipsis-v"></i>
+				</div>
+			</nav>
+			<div class="box-hidden-nav col-lg-12 bg-info">H</div>
+			<div id="imdb-slider" class="side-box col-lg-3">
+				<div class="imdb-slide">
+					<div id="imdb-title" class="">
+						<span id="imdb-n">{{imdb[0][1]}}</span><span id="imdb-y"> ({{imdb[0][2]}})</span>
+					</div>
+					<div id="imdb-img" class="row">
+						<div class="col-lg-6" style="padding-right:5px;">
+							<img src="{{imdb[0][8]}}" alt="" style="width:100%;height:200px;">
+						</div>
+						<div id="imdb-len" class="col-lg-6" >
+							<span class="col-lg-12">{{imdb[0][3]}}</span>
+							<span class="col-lg-12">{{imdb[0][4]}}</span>
+						</div>
+					</div>
+					<div id="imdb-plot">
+						{{imdb[0][7]}}
+					</div>
+					<div id="imdb-director" class="row">
+						<span id="imdb-d">Director:</span>{{imdb[0][5]}}
+					</div>
+					<div id="imdb-actors" class="row">
+						<span id="imdb-d">Actors:</span>{{imdb[0][6]}}
+					</div>
+				</div>
+				<!---->
+				<div class="imdb-slide">
+					<div id="imdb-title" class="">
+						<span id="imdb-n">{{imdb[1][1]}}</span><span id="imdb-y"> ({{imdb[1][2]}})</span>
+					</div>
+					<div id="imdb-img" class="row">
+						<div class="col-lg-6" style="padding-right:5px;">
+							<img src="{{imdb[1][8]}}" alt="" style="width:100%;height:200px;">
+						</div>
+						<div id="imdb-len" class="col-lg-6">
+							<span class="col-lg-12">{{imdb[1][3]}}</span>
+							<span class="col-lg-12">{{imdb[1][4]}}</span>
+						</div>
+					</div>
+					<div id="imdb-plot">
+						{{imdb[1][7]}}
+					</div>
+					<div id="imdb-director" class="row">
+						<span id="imdb-d">Director:</span>{{imdb[1][5]}}
+					</div>
+					<div id="imdb-actors" class="row">
+						<span id="imdb-d">Actors:</span>{{imdb[1][6]}}
+					</div>
+				</div>
+				<!---->
+				<div class="imdb-slide">
+					<div id="imdb-title" class="">
+						<span id="imdb-n">{{imdb[2][1]}}</span><span id="imdb-y"> ({{imdb[2][2]}})</span>
+					</div>
+					<div id="imdb-img" class="row">
+						<div class="col-lg-6" style="padding-right:5px;">
+							<img src="{{imdb[2][8]}}" alt="" style="width:100%;height:200px;">
+						</div>
+						<div id="imdb-len" class="col-lg-6">
+							<span class="col-lg-12">{{imdb[2][3]}}</span>
+							<span class="col-lg-12">{{imdb[2][4]}}</span>
+						</div>
+					</div>
+					<div id="imdb-plot">
+						{{imdb[2][7]}}
+					</div>
+					<div id="imdb-director" class="row">
+						<span id="imdb-d">Director:</span>{{imdb[2][5]}}
+					</div>
+					<div id="imdb-actors" class="row">
+						<span id="imdb-d">Actors:</span>{{imdb[2][6]}}
+					</div>
+				</div>
+				<div id="prev-imdb" class="imdb-arrow"><i class="fas fa-chevron-left"></i></div>
+				<div id="next-imdb" class="imdb-arrow"><i class="fas fa-chevron-right"></i></div>
+			</div>
+			<div id="content-imdb" class="content-box col-lg-9">
+				<div class="box-hidden-col bg-danger">B</div>
+				<!---{%for row in youtube%}
+					<div class="yt-box">
+						<div id="yt-frame" class="row">
+							<iframe width="100%" height="120"
+								src="https://www.youtube.com/embed/{{row[4]}}">
+							</iframe> 
+						</div>
+						<div id="yt-title" class="row">
+							{{row[2]}}
+						</div>
+						<div id="yt-content" class="row">
+							{{row[3]}}
+						</div>
+						<div id="yt-btn" class="row">
+							<span id="hidden-id" style="visibility: hidden;">{{row[4]}}</span>
+							<i  class="yt-mod fab fa-youtube"></i>
+						</div>
+					</div>
+				{%endfor%}-->
+			</div>
+		</div>
+		<br>
+		<!---->
+		<div id="box-git" class="box row">
+			<nav class="navbar col-lg-12">
+				<div class="box-logo">
+					<i class="box-bars fas fa-bars"></i>
+					<span id="git-logo" class="fab fa-github"></span>
+				</div>
+				<form id="git-form" action="" class="">
+					<input type="text">
+				</form>
+				<ul id="git-nav-ul" class="mr-auto">
+					<li>
+						<a href="">Pull requests</a>
+					</li>
+					<li>
+						<a href="">Issues</a>
+					</li>
+					<li>
+						<a href="">Mrketplace</a>
+					</li>
+					<li>
+						<a href="">Explore</a>
+					</li>
+				</ul>
+				<ul id="git-nav-ul-left">
+					<li>
+						<a href="" style="font-size: 1.2em;">
+							<span class="fas fa-bell"></span>
+						</a>
+						
+					</li>
+					<li>
+						<a href="" class="dropdown-toggle">
+							<span style="font-size:1.5em;">&#x2b;</span>
+						</a>
+					</li>
+					<li>
+						<a href="" class="dropdown-toggle">
+							<img src="https://avatars3.githubusercontent.com/u/20511988?s=460&v=4" alt="" style="width:25px;height:25px;border-radius: 3px;margin:0px 0px 5px 0px;">
+						</a>
+					</li>
+				</ul>
+				<div class="box-tog">
+					<i class="fas fa-ellipsis-v"></i>
+				</div>
+			</nav>
+			<div class="box-hidden-nav col-lg-12 bg-info">H</div>
+			<div class="side-box col-lg-3">
+				<div id="git-user-row" class="row">
+					<span>
+						<img src="https://avatars3.githubusercontent.com/u/20511988?s=460&v=4" alt="" style="width:40px;height:40px;border-radius: 3px;">
+					</span>
+					<span id="git-name">
+						Vadon998
+					</span>
+				</div>	
+				<ul id="git-user-ul">
+					<li><span>Name:</span>Item 1</li>
+					<li><span>Name:</span>Item 1</li>
+					<li><span>Name:</span>Item 1</li>
+					<li><span>Name:</span>Item 1</li>
+					<li><span>Name:</span>Item 1</li>
+					<li><span>Name:</span>Item 1</li>
+				</ul>
+			</div>
+			<div id="git-content" class="content-box col-lg-9">
+				<div class="box-hidden-col bg-danger">B</div>
+				<div class="git-box">
+					<ul id="git-box-ul">
+						<li><span>Name:</span>Item 1</li>
+						<li><span>Name:</span>Item 1</li>
+						<li><span>Name:</span>Item 1</li>
+						<li><span>Name:</span>Item 1</li>
+						<li><span>Name:</span>Item 1</li>
+						<li><span>Name:</span>Item 1</li>
+					</ul>
+				</div>
+				<div class="git-box">
+					<ul id="git-box-ul">
+						<li><span>Name:</span>Item 1</li>
+						<li><span>Name:</span>Item 1</li>
+						<li><span>Name:</span>Item 1</li>
+						<li><span>Name:</span>Item 1</li>
+						<li><span>Name:</span>Item 1</li>
+						<li><span>Name:</span>Item 1</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<br>
+		<!---->
+		<div id="box-twitter" class="box row">
+			<nav id="tweet-nav" class="navbar col-lg-12">
+				<div class="box-logo">
+					<i class="box-bars fas fa-bars"></i>
+					<span>
+						<a href=""><span class="logo-icon fab fa-twitter"></span></a>
+					</span>
+				</div>
+				<ul id="tweet-ul-1" class="">
+					<li>
+						<a href="">
+							<i class="fas fa-home"></i><span>Home</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="fas fa-bell"></i><span>Notifications</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<i class="far fa-envelope"></i><span>Messages</span>
+						</a>
+					</li>
+				</ul>
+				<span class="mid-icon fab fa-twitter mr-auto"></span>
+				<form id="tweet-form" action="">
+					<input id="tweet-input" type="text">
+					<img id="nav-avatar" src="https://pbs.twimg.com/profile_images/676881606582366209/CqxH6TH9_bigger.jpg" alt="" style="width:35px;height:35px;border-radius: 50px;border:1px solid #cdcdcd;">
+					<button id="tweet-btn">Tweet</button>
+				</form>
+				<div class="box-tog">
+					<i class="fas fa-ellipsis-v"></i>
+				</div>
+			</nav>
+			<div class="box-hidden-nav col-lg-12 bg-info">H</div>
+			<div class="side-box col-lg-3">
+				<table id="tweet-user">
+					<tr>
+						<td>
+							<img src="https://pbs.twimg.com/profile_images/676881606582366209/CqxH6TH9_bigger.jpg" alt="" style="width:72px;height:72px;border-radius: 50px;">
+						</td>
+						<td id="tweet-name">vadon</td>
+						<tr>
+							<td></td>
+							<td id="tweet-uaser-name">@vadon10</td>
+						</tr>
+					</tr>
+				</table>
+				<div id="tweet-user-bg" class="row"></div>
+				<table id="tweet-stat">
+					<tr>
+						<th>Tweets</th>
+						<th>Following</th>
+						<th>Followers</th>
+					</tr>
+					<tr id="tweet-stat-num">
+						<td>1</td>
+						<td>23</td>
+						<td>7</td>
+					</tr>
+				</table>
+			</div>
+			<div class="content-box col-lg-9">
+				<div class="box-hidden-col bg-danger">B</div>
+				<table id="tweet-tbl">
+					{% for row in twitter %}
+						<tr>
+							<td>
+								<img src="{{row[5]}}" alt="" style="width:40px;height:40px;border-radius: 50px;border:1px solid white;">
+							</td>
+							<td id="t-name">{{row[4]}}</td>
+							<td id="t-created">{{row[1]}}</td>
+							<td id="t-text">{{row[2]}}</td>
+							<td id="t-link"><a href="">{{row[3]}}</a></td>
+						</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+	<!--END-->
+	</div>
+{% endblock %}
