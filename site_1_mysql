@@ -1,0 +1,104 @@
+$ sudo mysql -u root # I had to use "sudo" since is new installation
+
+mysql> USE mysql;
+mysql> CREATE USER 'vadon_u'@'localhost' IDENTIFIED BY 'vadon_u';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'vadon-u'@'localhost';
+mysql> UPDATE user SET plugin='auth_socket' WHERE User='vadon_u';
+mysql> FLUSH PRIVILEGES;
+mysql> exit;
+
+$ service mysql restart
+
+UPDATE root SET plugin='mysql_native_password' WHERE User='root';//
+sudo mysql -u root
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test';
+
+
+CREATE DATABASE IF NOT EXISTS site_1 character set UTF8mb4;
+
+CREATE TABLE wiki_search (
+id INT(11) AUTO_INCREMENT,
+user VARCHAR(255) NULL,
+title VARCHAR(255) NULL,
+content MEDIUMTEXT NULL,
+img VARCHAR(255) NULL,
+url VARCHAR(255) NULL,
+PRIMARY KEY (id)
+);
+
+CREATE TABLE twitter_timeline(
+id INT(11) AUTO_INCREMENT,
+created VARCHAR(255) NULL,
+text VARCHAR(255) NULL,
+link VARCHAR(255) NULL,
+name VARCHAR(255) NULL,
+img VARCHAR(255) NULL,
+PRIMARY KEY(id));
+
+CREATE TABLE imdb_movie (
+id INT(11) AUTO_INCREMENT,
+title VARCHAR(255) NULL,
+year VARCHAR(255) NULL,
+runtime VARCHAR(255) NULL,
+genre VARCHAR(255) NULL,
+director VARCHAR(255) NULL,
+actors VARCHAR(255) NULL,
+plot VARCHAR(255) NULL,
+poster VARCHAR(255) NULL,
+rating VARCHAR(255) NULL,
+production VARCHAR(255) NULL,
+PRIMARY KEY(id));
+
+CREATE TABLE yt_channels (
+id INT (11) AUTO_INCREMENT,
+user VARCHAR(255) NULL,
+title VARCHAR(255) NULL,
+views VARCHAR(255) NULL,
+href VARCHAR(255),
+PRIMARY KEY(id)
+);
+
+CREATE TABLE events (
+id INT(11) AUTO_INCREMENT,
+username VARCHAR(255) NOT NULL,
+event VARCHAR(255) NOT NULL,
+hour VARCHAR(255) NULL,
+descreption VARCHAR(255) NULL,
+type_e VARCHAR(255) NULL,
+date VARCHAR(255) NULL,
+PRIMARY KEY(id)
+);
+
+CREATE TABLE science_news(
+id INT(11) AUTO_INCREMENT,
+source VARCHAR(255) NULL,
+img VARCHAR(255) NULL,
+link VARCHAR(255) NULL,
+title VARCHAR(255) NULL,
+text VARCHAR(255) NULL,
+meta VARCHAR(255) NULL,
+PRIMARY KEY(id)
+);
+
+CREATE TABLE popluer_machine(
+id INT(11) AUTO_INCREMENT,
+link VARCHAR(255) NULL,
+img VARCHAR(255) NULL,
+title VARCHAR(255) NULL,
+content VARCHAR(255) NULL,
+author VARCHAR(255) NULL,
+PRIMARY KEY(id)
+);
+
+CREATE TABLE rate (
+id INT(11) AUTO_INCREMENT,
+d_rate VARCHAR(255) NULL,
+d_xrate VARCHAR(255) NULL,
+p_rate VARCHAR(255) NULL,
+p_xrate VARCHAR(255) NULL,
+y_rate VARCHAR(255) NULL,
+y_xrate VARCHAR(255) NULL,
+e_rate VARCHAR(255) NULL,
+e_xrate VARCHAR(255) NULL,
+PRIMARY KEY(id)
+);
